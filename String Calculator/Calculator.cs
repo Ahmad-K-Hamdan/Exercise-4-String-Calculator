@@ -3,6 +3,8 @@ namespace String_Calculator;
 
 public class Calculator
 {
+    private const int BigNumbers = 1000;
+    
     public int Add(string numbers)
     {
         if (numbers.Trim().Length == 0)
@@ -12,6 +14,7 @@ public class Calculator
 
         var ints = ParseStringToListOfIntegers(numbers);
         CatchNegativeNumbers(ints);
+        ints = IgnoreBigNumbers(ints);
 
         return ints.Sum();
     }
@@ -43,5 +46,10 @@ public class Calculator
         {
             throw new ArgumentException($"negatives not allowed: {string.Join(", ", NegativeNumbers)}");
         }
+    }
+
+    private List<int> IgnoreBigNumbers(List<int> ints)
+    {
+        return ints.Where(num => num <= BigNumbers).ToList();
     }
 }

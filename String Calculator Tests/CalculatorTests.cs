@@ -83,4 +83,14 @@ public class CalculatorTests
         var ex = Assert.Throws<ArgumentException>(() => _calculator.Add("1,2,-3,4,-5"));
         Assert.Equal("negatives not allowed: -3, -5", ex.Message);
     }
+
+    [Fact]
+    public void Add_BigNumbers_IgnoreBigNumbers()
+    { 
+        // Assert
+        var answer = _calculator.Add("1001,2");
+
+        // Act
+        Assert.Equal(2, answer);
+    }
 }
