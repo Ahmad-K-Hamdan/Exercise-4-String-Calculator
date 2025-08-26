@@ -1,4 +1,5 @@
-﻿namespace String_Calculator;
+﻿
+namespace String_Calculator;
 
 public class Calculator
 {
@@ -10,16 +11,17 @@ public class Calculator
         }
 
         var ints = ParseStringToListOfIntegers(numbers);
+        CatchNegativeNumbers(ints);
 
         return ints.Sum();
     }
 
-    public List<int> ParseStringToListOfIntegers(string numbers)
+    private List<int> ParseStringToListOfIntegers(string numbers)
     {
         string newString = "";
         foreach (var c in numbers)
         {
-            if (char.IsDigit(c))
+            if (char.IsDigit(c) || c == '-')
             {
                 newString += c;
             }
@@ -31,5 +33,15 @@ public class Calculator
 
         var nums = newString.Trim().Split(' ');
         return nums.Select(num => int.Parse(num)).ToList();
+    }
+
+    private void CatchNegativeNumbers(List<int> ints)
+    {
+        var NegativeNumbers = ints.Where(num => num < 0);
+
+        if (NegativeNumbers.Any())
+        {
+            throw new ArgumentException($"negatives not allowed: {string.Join(", ", NegativeNumbers)}");
+        }
     }
 }

@@ -76,4 +76,11 @@ public class CalculatorTests
         // Act
         Assert.Equal(15, answer);
     }
+
+    [Fact]
+    public void Add_CatchNegativeNumbers_ThrowAnException()
+    {
+        var ex = Assert.Throws<ArgumentException>(() => _calculator.Add("1,2,-3,4,-5"));
+        Assert.Equal("negatives not allowed: -3, -5", ex.Message);
+    }
 }
