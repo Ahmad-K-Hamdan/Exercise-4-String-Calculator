@@ -56,4 +56,14 @@ public class CalculatorTests
         // Act
         Assert.Equal(15, answer);
     }
+
+    [Fact]
+    public void Add_HandleNewLines_ReturnTheirAddition()
+    {
+        // Assert
+        var answer = _calculator.Add("1\n2,3,4\n5");
+
+        // Act
+        Assert.Equal(15, answer);
+    }
 }
