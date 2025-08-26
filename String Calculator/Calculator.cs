@@ -2,29 +2,21 @@
 
 public class Calculator
 {
-    public int Add(String numbers)
+    public int Add(string numbers)
     {
         if (numbers.Trim().Length == 0)
         {
             return 0;
         }
 
-        var IndexOfFirstComma = numbers.IndexOf(',');
-        if (IndexOfFirstComma == -1)
-        {
-            return int.Parse(numbers);
-        }
+        var ints = ParseStringToListOfIntegers(numbers);
+        
+        return ints.Sum();
+    }
 
-        var FirstNumber = int.Parse(numbers.Substring(0, IndexOfFirstComma));
-
-        var StringAfterComma = numbers.Substring(IndexOfFirstComma);
-        if (StringAfterComma.Length < 1)
-        {
-            return FirstNumber;
-        }
-
-        var SecondNumber = int.Parse(numbers.Substring(numbers.IndexOf(',') + 1));
-
-        return FirstNumber + SecondNumber;
+    public List<int> ParseStringToListOfIntegers(string numbers)
+    {
+        var nums = numbers.Split(',');
+        return nums.Select(num => int.Parse(num)).ToList();
     }
 }

@@ -46,4 +46,14 @@ public class CalculatorTests
         // Act
         Assert.Equal(2, answer);
     }
+
+    [Fact]
+    public void Add_MoreThanTwoNumbers_ReturnTheirAddition()
+    {
+        // Assert
+        var answer = _calculator.Add("1,2,3,4,5");
+
+        // Act
+        Assert.Equal(15, answer);
+    }
 }
