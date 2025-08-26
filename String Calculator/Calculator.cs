@@ -16,18 +16,20 @@ public class Calculator
 
     public List<int> ParseStringToListOfIntegers(string numbers)
     {
-        var nums = numbers.Split(',');
+        string newString = "";
+        foreach (var c in numbers)
+        {
+            if (char.IsDigit(c))
+            {
+                newString += c;
+            }
+            else
+            {
+                newString += " ";
+            }
+        }
 
-        // Join the list of strings (nums) to create a string
-        // Split the new string based on \n
-        var newString = String.Join(' ', nums);
-        nums = newString.Split('\n');
-
-        // Join the list of strings (nums) to create a string
-        // Split the new string based on ' ' space to get the final list
-        newString = String.Join(' ', nums);
-        nums = newString.Split(' ');
-
+        var nums = newString.Trim().Split(' ');
         return nums.Select(num => int.Parse(num)).ToList();
     }
 }

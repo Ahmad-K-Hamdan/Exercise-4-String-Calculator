@@ -66,4 +66,14 @@ public class CalculatorTests
         // Act
         Assert.Equal(15, answer);
     }
+
+    [Fact]
+    public void Add_HandleAllTypesOfDelimters_ReturnTheirAddition()
+    {
+        // Assert
+        var answer = _calculator.Add("//;\n1;2\n3\n4;5");
+
+        // Act
+        Assert.Equal(15, answer);
+    }
 }
