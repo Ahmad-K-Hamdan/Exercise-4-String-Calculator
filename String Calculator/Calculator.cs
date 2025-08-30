@@ -4,7 +4,7 @@ namespace String_Calculator;
 public class Calculator
 {
     private const int BigNumbers = 1000;
-    
+
     public int Add(string numbers)
     {
         if (numbers.Trim().Length == 0)
@@ -21,7 +21,7 @@ public class Calculator
 
     private List<int> ParseStringToListOfIntegers(string numbers)
     {
-        string newString = "";
+        var newString = "";
         foreach (var c in numbers)
         {
             if (char.IsDigit(c) || c == '-')
